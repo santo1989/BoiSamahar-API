@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Models\Book;
@@ -66,6 +67,21 @@ Route::get('authors/search/{id}', function ($id) {
     return response()->json($response, 200);
 });
 
+
+Route::get('books/search/{id}', function ($id) {
+    $books = Book::where('id', $id)->get();
+    foreach ($books as $book) {
+        $book->download_link = url('storage/books/' . $book->download_link);
+    }
+
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' search by id of Books retrieved successfully.',
+    ];
+
+    return response()->json($response, 200);
+});
 
 
 // Route::apiResource('categories', CategoryController::class)->middleware('auth:sanctum');

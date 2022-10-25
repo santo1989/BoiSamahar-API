@@ -18,7 +18,9 @@ class Book extends Model
         'name',
         'details',
         'category_id',
+        'author_id',
         'download_link',
+
     ];
 
   public function category()

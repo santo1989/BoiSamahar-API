@@ -29,7 +29,7 @@ class BookController extends BaseController
         ];
 
         $book = Book::create($input);
-        
+
         Category::where('id', $request->category_id)->increment('number_of_book');
 
         Author::where('id', $request->author_id)->increment('number_of_book');
@@ -59,7 +59,7 @@ class BookController extends BaseController
         if ($request->hasFile('download_link')) {
             $download_link = $request->file('download_link');
             $name = $download_link->getClientOriginalName() . '-' . time() .
-            '.' . $download_link->getClientOriginalExtension();
+                '.' . $download_link->getClientOriginalExtension();
             $destinationPath = storage_path('/app/public/books/');
             $download_link->move($destinationPath, $name);
             $book->download_link = $name;
@@ -72,7 +72,7 @@ class BookController extends BaseController
 
     public function destroy(Book $book)
     {
-        $book=Book::find($book->id);
+        $book = Book::find($book->id);
         $url = storage_path('/app/public/books/' . $book->download_link);
         if (file_exists($url)) {
             unlink($url);
@@ -86,8 +86,8 @@ class BookController extends BaseController
 
     public function uploadpdf($file)
     {
-        $name = $file->getClientOriginalName() .'-'. time(). 
-         '.' . $file->getClientOriginalExtension();
+        $name = $file->getClientOriginalName() . '-' . time() .
+            '.' . $file->getClientOriginalExtension();
         $destinationPath = storage_path('/app/public/books/');
         $file->move($destinationPath, $name);
         return $name;
@@ -100,5 +100,4 @@ class BookController extends BaseController
         }
         return $books;
     }
-
 }
