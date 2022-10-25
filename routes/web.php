@@ -30,6 +30,8 @@ Route::get('/books/{book}/download', [App\Http\Controllers\BookController::class
 
 Route::resource('categories', App\Http\Controllers\CategoryController::class);
 
+Route::resource('authors', App\Http\Controllers\AuthorController::class);
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

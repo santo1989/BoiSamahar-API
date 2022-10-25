@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController as BaseController;
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -23,12 +24,15 @@ class BookController extends BaseController
             'name' => $request->name,
             'details' => $request->details,
             'category_id' => $request->category_id,
+            'author_id' => $request->author_id,
             'download_link' => $this->uploadpdf(request()->file('download_link')),
         ];
 
         $book = Book::create($input);
+        
         Category::where('id', $request->category_id)->increment('number_of_book');
 
+        Author::where('id', $request->author_id)->increment('number_of_book');
 
         return $this->sendResponse($book->toArray(), 'Book created successfully.');
     }
@@ -50,6 +54,7 @@ class BookController extends BaseController
             'name' => $request->name,
             'details' => $request->details,
             'category_id' => $request->category_id,
+            'author_id' => $request->author_id,
         ];
         if ($request->hasFile('download_link')) {
             $download_link = $request->file('download_link');
@@ -60,12 +65,6 @@ class BookController extends BaseController
             $book->download_link = $name;
         }
         $book->update($input);
-
-        // $category_number = Category::find($book->category_id);
-        // $number_of_book = [
-        //     'number_of_book' => $category_number->number_of_book + 1,
-        // ];
-        // $category_number->update($number_of_book);
 
 
         return $this->sendResponse($book->toArray(), 'Book updated successfully.');
@@ -79,8 +78,8 @@ class BookController extends BaseController
             unlink($url);
         }
         $book->delete();
-        // $category_number = Category::find($book->category_id);
-        // $book->number_of_book = $category_number->number_of_book - 1;
+        $book->category->decrement('number_of_book');
+        $book->author->decrement('number_of_book');
 
         return $this->sendResponse($book->toArray(), 'Book deleted successfully.');
     }

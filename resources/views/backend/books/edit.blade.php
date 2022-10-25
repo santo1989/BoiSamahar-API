@@ -48,6 +48,17 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="author_name">Author Name</label>
+                <select class="form-control" name="author_id" id="author_name">
+                    <option value="">Select Author</option>
+                    @foreach ($authors as $author)
+                        <option value="{{ $author->id }}" {{ $author->id == $book->author_id ? 'selected' : '' }}>
+                            {{ $author->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="form-group">
                 <label for="details">Book Details</label>
                 <textarea class="form-control" name="details" id="details" rows="3">{{ $book->details }}</textarea>

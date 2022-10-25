@@ -40,17 +40,19 @@
                                             <th>SL</th>
                                             <th>Book Name</th>
                                             <th>Category Name</th>
+                                            <th>Book Author</th>
                                             <th>Book Details</th>
                                             <th>Book Download Link</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($books as $book)
+                                        @forelse ($books as $book)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $book->name }}</td>
-                                                <td>{{ $book->category->name }}</td>
+                                                <td>{{ $book->category->name ?? ' ' }}</td>
+                                                <td>{{ $book->author->name ?? ' '}}</td>
                                                 <td>{{ $book->details }}</td>
                                                 <td>
                                                     <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
@@ -71,7 +73,13 @@
                             </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="text-center text-danger">
+                                                    <strong>Currently No Information Available!</strong>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

@@ -18,6 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('name');
             $table->string('details');
             $table->unsignedBigInteger('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->string('download_link');
             $table->timestamps();
         });

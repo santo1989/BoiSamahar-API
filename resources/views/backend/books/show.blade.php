@@ -39,6 +39,7 @@
                                         <tr>
                                             <th>Book Name</th>
                                             <th>Category Name</th>
+                                            <th>Book Author</th>
                                             <th>Book Details</th>
                                             <th>Book Download Link</th>
                                         </tr>
@@ -48,6 +49,7 @@
                                             <tr>
                                                 <td>{{ $book->name }}</td>
                                                 <td>{{ $book->category->name }}</td>
+                                                <td>{{ $book->author->name }}</td>
                                                 <td>{{ $book->details }}</td>
                                                 <td>
                                                     <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">

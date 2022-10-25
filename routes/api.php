@@ -25,7 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/auth/register', [AuthController::class, 'createUser']);
 Route::post('/auth/login', [AuthController::class, 'loginUser']);
+
 Route::apiResource('categories', CategoryController::class);
+
 Route::get('categories/search/{id}', function ($id) {
     $books = Book::where('category_id', $id)->get();
     foreach ($books as $book) {
@@ -43,7 +45,28 @@ Route::get('categories/search/{id}', function ($id) {
 
     
 });
+
 Route::apiResource('books', BookController::class);
+
+Route::apiResource('authors', AuthorController::class);
+
+Route::get('authors/search/{id}', function ($id) {
+    $books = Book::where('author_id', $id)->get();
+    foreach ($books as $book) {
+        $book->download_link = url('storage/books/' . $book->download_link);
+    }
+
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' search by authors of Books retrieved successfully.',
+    ];
+
+
+    return response()->json($response, 200);
+});
+
+
 
 // Route::apiResource('categories', CategoryController::class)->middleware('auth:sanctum');
 // Route::get('categories/search/{id}', function ($id) {

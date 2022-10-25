@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Database\QueryException;
@@ -22,17 +23,20 @@ class BookController extends Controller
     {
         $books = Book::all();
         $categories = Category::all();
-        return view('backend.books.create', compact('books', 'categories'));
+        $authors = Author::all();
+        return view('backend.books.create', compact('books', 'categories', 'authors'));
     }
 
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|min:3|max:191',
             'download_link' => 'required',
             'details' => 'required',
             'category_id' => 'required',
+            'author_id' => 'required',
         ]);
         try {
             Book::create([
@@ -40,8 +44,14 @@ class BookController extends Controller
                 'details' => $request->details,
                 'download_link' => $this->uploadpdf(request()->file('download_link')),
                 'category_id' => $request->category_id,
+                'author_id' => $request->author_id,
             ]);
+            
             Category::where('id', $request->category_id)->increment('number_of_book');
+
+            Author::where('id', $request->author_id)->increment('number_of_book');
+
+
             
 
             return redirect()->route('books.index')->withMessage('Successfully Created!');
@@ -64,7 +74,8 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         $categories = Category::all();
-        return view('backend.books.edit', compact('book', 'categories'));
+        $authors = Author::all();
+        return view('backend.books.edit', compact('book', 'categories', 'authors'));
     }
 
    
@@ -76,6 +87,7 @@ class BookController extends Controller
                 'name' => $request->name,
                 'details' => $request->details,
                 'category_id' => $request->category_id,
+                'author_id' => $request->author_id,
             ];
 
             if ($request->hasFile('download_link')) {
@@ -105,6 +117,9 @@ class BookController extends Controller
             unlink($unlink);
         }
         $book->delete();
+
+        $book->category->decrement('number_of_book');
+        $book->author->decrement('number_of_book');
 
         // Redirect
         return redirect()->route('books.index');
