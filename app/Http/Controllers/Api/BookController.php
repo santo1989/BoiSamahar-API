@@ -20,11 +20,15 @@ class BookController extends BaseController
 
     public function store(Request $request)
     {
+        $category_name = Category::where('id', $request->category_id)->get();
+        $author_name = Author::where('id', $request->author_id)->get();
         $input = [
             'name' => $request->name,
             'details' => $request->details,
             'category_id' => $request->category_id,
+            'category_name' => $category_name[0]->name,
             'author_id' => $request->author_id,
+            'author_name' => $author_name[0]->name,
             'download_link' => $this->uploadpdf(request()->file('download_link')),
         ];
 
@@ -50,11 +54,15 @@ class BookController extends BaseController
 
     public function update(Request $request, Book $book)
     {
+        $category_name = Category::where('id', $request->category_id)->get('name');
+        $author_name = Author::where('id', $request->author_id)->get('name');
         $input = [
             'name' => $request->name,
             'details' => $request->details,
             'category_id' => $request->category_id,
+            'category_name' => $category_name,
             'author_id' => $request->author_id,
+            'author_name' => $author_name,
         ];
         if ($request->hasFile('download_link')) {
             $download_link = $request->file('download_link');

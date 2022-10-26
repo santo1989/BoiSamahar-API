@@ -39,12 +39,16 @@ class BookController extends Controller
             'author_id' => 'required',
         ]);
         try {
+            $category_name = Category::where('id', $request->category_id)->get();
+            $author_name = Author::where('id', $request->author_id)->get();
             Book::create([
                 'name' => $request->name,
                 'details' => $request->details,
                 'download_link' => $this->uploadpdf(request()->file('download_link')),
                 'category_id' => $request->category_id,
+                'category_name'=> $category_name[0]->name,
                 'author_id' => $request->author_id,
+                'author_name' => $author_name[0]->name,
             ]);
             
             Category::where('id', $request->category_id)->increment('number_of_book');
@@ -83,11 +87,15 @@ class BookController extends Controller
     {
         $book = Book::find($id);
         try {
+            $category_name = Category::where('id', $request->category_id)->get();
+            $author_name = Author::where('id', $request->author_id)->get();
             $requestData = [
                 'name' => $request->name,
                 'details' => $request->details,
                 'category_id' => $request->category_id,
+                'category_name' => $category_name[0]->name,
                 'author_id' => $request->author_id,
+                'author_name' => $author_name[0]->name,
             ];
 
             if ($request->hasFile('download_link')) {

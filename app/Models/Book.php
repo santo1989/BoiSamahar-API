@@ -18,7 +18,9 @@ class Book extends Model
         'name',
         'details',
         'category_id',
+        'category_name',
         'author_id',
+        'author_name',
         'download_link',
 
     ];
