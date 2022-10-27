@@ -51,7 +51,7 @@ Route::apiResource('books', BookController::class);
 
 Route::apiResource('authors', AuthorController::class);
 
-Route::get('authors/search/{id}', function ($id) {
+Route::get('books/search/author/{author_id}', function ($id) {
     $books = Book::where('author_id', $id)->get();
     foreach ($books as $book) {
         $book->download_link = url('storage/books/' . $book->download_link);
@@ -68,11 +68,10 @@ Route::get('authors/search/{id}', function ($id) {
 });
 
 
-Route::get('books/search/{id}', function ($id) {
-    $books = Book::where('id', $id)->get();
-    foreach ($books as $book) {
-        $book->download_link = url('storage/books/' . $book->download_link);
-    }
+Route::get('books/search/category/author_name/{category_id}', function ($id) {
+    // $books = Book::where('category_id', $id)->author_name;
+    $books = Book::where('category_id', $id)->get()->groupBy('author_name');
+  
 
     $response = [
         'success' => true,
@@ -83,6 +82,66 @@ Route::get('books/search/{id}', function ($id) {
     return response()->json($response, 200);
 });
 
+Route::get('books/search/book_name/{name}', function ($name) {
+    $books = Book::where('name', $name)->get();
+    foreach ($books as $book) {
+        $book->download_link = url('storage/books/' . $book->download_link);
+    }
+
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' search by name of Books retrieved successfully.',
+    ];
+
+    return response()->json($response, 200);
+}); 
+
+Route::get('books/search/author_name/{author_name}', function ($author_name) {
+    $books = Book::where('author_name', $author_name)->get();
+    foreach ($books as $book) {
+        $book->download_link = url('storage/books/' . $book->download_link);
+    }
+
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' search by author of Books retrieved successfully.',
+    ];
+
+    return response()->json($response, 200);
+});
+
+Route::get('books/search/category_name/{category_name}', function ($category_name) {
+    $books = Book::where('category_name', $category_name)->get();
+    foreach ($books as $book) {
+        $book->download_link = url('storage/books/' . $book->download_link);
+    }
+
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' search by category of Books retrieved successfully.',
+    ];
+
+    return response()->json($response, 200);
+});
+
+
+// Route::get('books/search/{description}', function ($description) {
+//     $books = Book::where('description', $description)->get();
+//     foreach ($books as $book) {
+//         $book->download_link = url('storage/books/' . $book->download_link);
+//     }
+
+//     $response = [
+//         'success' => true,
+//         'data'    => $books,
+//         'message' => ' search by description of Books retrieved successfully.',
+//     ];
+
+//     return response()->json($response, 200);
+// });
 
 // Route::apiResource('categories', CategoryController::class)->middleware('auth:sanctum');
 // Route::get('categories/search/{id}', function ($id) {
