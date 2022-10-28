@@ -36,7 +36,8 @@ Route::get('categories/search/{id}', function ($id) {
     foreach ($books as $book) {
         $book->download_link = url('storage/books/' . $book->download_link);
     }
-    $number_of_books=Category::find($id)->number_of_books = $books->count();
+    // $number_of_books=Category::find($id)->number_of_books = $books->count();
+    $number_of_books = Book::where('author_id', $id)->count();
         $response = [
             'success' => true,
             'data'    => $books, $number_of_books,
