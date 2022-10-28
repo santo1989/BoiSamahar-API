@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,13 +32,14 @@ Route::apiResource('categories', CategoryController::class);
 
 Route::get('categories/search/{id}', function ($id) {
     $books = Book::where('category_id', $id)->get();
+    
     foreach ($books as $book) {
         $book->download_link = url('storage/books/' . $book->download_link);
     }
-
+    $number_of_books=Category::find($id)->number_of_books = $books->count();
         $response = [
             'success' => true,
-            'data'    => $books,
+            'data'    => $books, $number_of_books,
             'message' => ' search by categories of Books retrieved successfully.',
         ];
 
