@@ -1,7 +1,7 @@
       <x-backend.layouts.master>
 
             <x-slot name="pageTitle">
-                Dashboard
+                
             </x-slot>
 
             <x-slot name='breadCrumb'>
@@ -29,9 +29,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card ">
-                            <div class="card-header">
+                            {{-- <div class="card-header">
                                 <a class="btn btn-primary" href={{ route('books.create') }}>Create</a>
-                            </div>
+                            </div> --}}
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="datatablesSimple" class="table table-bordered table-hover">
@@ -61,15 +61,15 @@
                         </td>
                                                 <td>
                                                    
-                                                    <a class="btn btn-info"
+                                                    <a class="btn btn-info my-1 mx-1 btn-sm"
                                                         href="{{ route('books.edit', $book->id) }}">Edit</a>
-                                                        <a class="btn btn-primary"
+                                                        <a class="btn btn-primary my-1 mx-1 btn-sm"
                                                         href={{ route('books.show', ['book' => $book->id]) }}>Show</a>
                                                     <form action="{{ route('books.destroy', $book->id) }}" method="POST">
                                                        @csrf
                                 @method('delete')
 
-                                <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-danger" type="submit">Delete</button>
+                                <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-danger my-1 mx-1 btn-sm" type="submit">Delete</button>
                             </form>
                                                 </td>
                                             </tr>

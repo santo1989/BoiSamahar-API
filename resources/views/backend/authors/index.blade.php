@@ -56,9 +56,9 @@
                                                 <td>{{ $author->name }}</td>
                                                 <td>{{ $author->books->count() }}</td>
                                                 <td>
-                                                    <a class="btn btn-primary"
+                                                    <a class="btn btn-primary my-1 mx-1 btn-sm"
                                                         href={{ route('authors.edit', ['author' => $author->id]) }}>Edit</a>
-                                                    <a class="btn btn-primary"
+                                                    <a class="btn btn-primary my-1 mx-1 btn-sm"
                                                         href={{ route('authors.show', ['author' => $author->id]) }}>Show</a>
 
                                                     <form
@@ -69,7 +69,7 @@
 
                                                         <button
                                                             onclick="return confirm('Are you sure want to delete ?')"
-                                                            class="btn btn-danger" type="submit">Delete</button>
+                                                            class="btn btn-danger my-1 mx-1 btn-sm" type="submit">Delete</button>
                                                     </form>
 
                                                 </td>
