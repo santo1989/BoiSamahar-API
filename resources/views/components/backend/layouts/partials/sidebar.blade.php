@@ -6,17 +6,17 @@
 
 
                     <a class="nav-link" href="{{ route('categories.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></div>
                          Category
                     </a>
 
                     <a class="nav-link" href="{{ route('authors.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="sb-nav-link-icon"><i class="fas fa-book-reader"></i></div>
                          Author
                     </a>
 
                     <a class="nav-link" href="{{ route('books.index') }}">
-                        <div class="sb-nav-link-icon"><i class='fas fa-car'></i></div>
+                        <div class="sb-nav-link-icon"><i class='fas fa-book'></i></div>
                         Book
                     </a>
 
