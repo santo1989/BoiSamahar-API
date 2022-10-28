@@ -20,23 +20,23 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt('@1234+5678@'),
             'remember_token' => Str::random(10),
         ]);
 
         User::create([
-            'name' => 'admin1',
-            'email' => 'admin1@gmail.com',
+            'name' => 'Md. Sobuj Hossain',
+            'email' => 'sobuj@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt('@1234+5678@'),
             'remember_token' => Str::random(10),
         ]);
 
         User::create([
-            'name' => 'admin2',
-            'email' => 'admin2@gmail.com',
+            'name' => 'Super Admin',
+            'email' => 'superadmin@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt('@1234+5678@'),
             'remember_token' => Str::random(10),
         ]);
     }
