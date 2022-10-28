@@ -21,6 +21,7 @@
                     </a>
 
         </div>
+        </div>
        <div class="sb-sidenav-footer">
             <div class="small">Logged By:</div>
             {{ auth()->user()->name ?? '' }}
