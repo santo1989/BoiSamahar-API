@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<nav class="sb-topnav navbar navbar-expand navbar-light " style="background-color: #2196F3">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="{{ route('home') }}">Dashboard</a>
     <!-- Sidebar Toggle-->
