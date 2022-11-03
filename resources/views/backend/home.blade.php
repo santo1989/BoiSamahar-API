@@ -34,10 +34,12 @@
 
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="{{ route('categories.index') }}" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Manage Category</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-indent "
                                               aria-hidden="true"></i></div>
                                       <p class="card-text d-flex justify-content-center">Total {{ $categories->count() }} Category </p>
+                                    </a>
                                   </div>
                               </div>
                             </div>
@@ -48,9 +50,11 @@
                               @endphp
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="{{ route('authors.index') }}" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Manage Author</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-user" aria-hidden="true"></i></div>
                                       <p class="card-text d-flex justify-content-center">Total {{ $authors->count() }} Author </p>
+                                    </a>
                                   </div>
                               </div>
                             </div>
@@ -62,9 +66,11 @@
                                 @endphp
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="{{ route('books.index') }}" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Manage Book</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-book" aria-hidden="true"></i></i></div>
                                       <p class="card-text d-flex justify-content-center">Total {{ $books->count() }} Book </p>
+                                    </a>
                                   </div>
                               </div>
                             </div>
@@ -72,9 +78,11 @@
                               <div class="col-md-3 col-lg-3 col-sm-12">
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Notification</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-bell" aria-hidden="true"></i></div>
-                                      <p class="card-text d-flex justify-content-center">Total {{ $categories->count() }} Category </p>
+                                      <p class="card-text d-flex justify-content-center">Total 10 Notification </p>
+                                    </a>
                                   </div>
                               </div>
                               <!-- /.card -->
@@ -91,9 +99,11 @@
 
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Registered Users</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-user-circle" aria-hidden="true"></i></i></div>
                                       <p class="card-text d-flex justify-content-center">Total {{ $users->count() }} Users </p>
+                                    </a>
                                   </div>
                               </div>
                             </div>
@@ -102,9 +112,11 @@
                                
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Manage ADDS</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-university" aria-hidden="true"></i></div>
                                       <p class="card-text d-flex justify-content-center">App Monitaization </p>
+                                    </a>
                                   </div>
                               </div>
                             </div>
@@ -113,9 +125,11 @@
                               <div class="col-md-3 col-lg-3 col-sm-12">
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Comments</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-comments" aria-hidden="true"></i></div>
                                       <p class="card-text d-flex justify-content-center">Users Comments </p>
+                                    </a>
                                   </div>
                               </div>
                             </div>
@@ -123,9 +137,11 @@
                               <div class="col-md-3 col-lg-3 col-sm-12">
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
                                       <h5 class="card-title d-flex justify-content-center">Settings</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-cog" aria-hidden="true"></i></div>
                                       <p class="card-text d-flex justify-content-center">Key and Privacy Settings </p>
+                                    </a>
                                   </div>
                               </div>
                               <!-- /.card -->
