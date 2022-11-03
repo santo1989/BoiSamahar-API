@@ -33,11 +33,11 @@
                               @endphp
 
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Category</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $categories->count() }} Category </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Category</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-indent "
+                                              aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $categories->count() }} Category </p>
                                   </div>
                               </div>
                             </div>
@@ -47,11 +47,10 @@
                                   $authors = App\Models\Author::all();
                               @endphp
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Author</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $authors->count() }} Author </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Author</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-user" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $authors->count() }} Author </p>
                                   </div>
                               </div>
                             </div>
@@ -62,22 +61,20 @@
                                   $books = App\Models\Book::all();
                                 @endphp
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Book</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $books->count() }} Book </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Book</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-book" aria-hidden="true"></i></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $books->count() }} Book </p>
                                   </div>
                               </div>
                             </div>
                               <!-- /.card -->
                               <div class="col-md-3 col-lg-3 col-sm-12">
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Category</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $categories->count() }} Category </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Notification</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-bell" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $categories->count() }} Category </p>
                                   </div>
                               </div>
                               <!-- /.card -->
@@ -89,55 +86,46 @@
                        <div class="row pt-2">
                           <div class="col-md-3 col-lg-3 col-sm-12">
                               @php
-                                  $categories = App\Models\Category::all();
+                                  $users = App\Models\User::all();
                               @endphp
 
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Category</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $categories->count() }} Category </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Registered Users</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-user-circle" aria-hidden="true"></i></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $users->count() }} Users </p>
                                   </div>
                               </div>
                             </div>
                               <!-- /.card -->
                               <div class="col-md-3 col-lg-3 col-sm-12">
-                                @php
-                                  $authors = App\Models\Author::all();
-                              @endphp
+                               
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Author</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $authors->count() }} Author </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Manage ADDS</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-university" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">App Monitaization </p>
                                   </div>
                               </div>
                             </div>
 
                               <!-- /.card -->
                               <div class="col-md-3 col-lg-3 col-sm-12">
-                                @php
-                                  $books = App\Models\Book::all();
-                                @endphp
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Book</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $books->count() }} Book </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Comments</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-comments" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Users Comments </p>
                                   </div>
                               </div>
                             </div>
                               <!-- /.card -->
                               <div class="col-md-3 col-lg-3 col-sm-12">
                               <div class="card" style="background-color: #2196F3">
-                                  <div class="card-body align-items-center">
-                                      <h5 class="card-title">Manage Category</h5>
-                                      <span class="align-items-center"> <i class="fa fa-indent "
-                                              aria-hidden="true"></i></span>
-                                      <p class="card-text">Total {{ $categories->count() }} Category </p>
+                                  <div class="card-body">
+                                      <h5 class="card-title d-flex justify-content-center">Settings</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-cog" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Key and Privacy Settings </p>
                                   </div>
                               </div>
                               <!-- /.card -->
