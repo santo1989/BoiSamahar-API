@@ -113,7 +113,7 @@
                               <div class="card" style="background-color: #2196F3">
                                   <div class="card-body">
                                     <a href="#" style="color: white; text-decoration: none;">
-                                      <h5 class="card-title d-flex justify-content-center">Manage ADDS</h5>
+                                      <h5 class="card-title d-flex justify-content-center">Manage Ads</h5>
                                       <div class="d-flex justify-content-center"> <i class="fa fa-university" aria-hidden="true"></i></div>
                                       <p class="card-text d-flex justify-content-center">App Monitaization </p>
                                     </a>
