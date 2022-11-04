@@ -5,7 +5,7 @@
 
     <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Book </x-slot>
+            <x-slot name="pageHeader">  </x-slot>
             <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Book</a></li>
             <li class="breadcrumb-item active">Edit Book</li>
         </x-backend.layouts.elements.breadcrumb>
@@ -61,13 +61,18 @@
             </div>
             <div class="form-group">
                 <label for="details">Book Details</label>
-                <textarea class="form-control" name="details" id="details" rows="3">{{ $book->details }}</textarea>
+                <input class="form-control" name="details" id="details" >{{ $book->details }}</input>
             </div>
+
             <div class="form-group">
+                <label for="name">Book Url</label>
+                <input type="text" class="form-control" value="{{ $book->download_link }}" name="download_link" id="download_link" placeholder="Enter Book Name">
+            </div>
+            <!-- <div class="form-group">
                 <label for="download_link">Book Download Link</label>
                 <input type="file" class="form-control" name="download_link" id="download_link"
                     placeholder="Enter Book Download Link" value="{{ $book->download_link }}">
-            </div>
+            </div> -->
 
             <x-backend.form.button>Save</x-backend.form.button>
         </div>

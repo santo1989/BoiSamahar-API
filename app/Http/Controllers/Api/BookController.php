@@ -14,7 +14,7 @@ class BookController extends BaseController
     public function index()
     {
         $books = Book::all();
-        $books->download_link = $this->getDownloadLink($books);
+       // $books->download_link = $this->getDownloadLink($books);
         return $this->sendResponse($books, 'Books retrieved successfully.');
     }
 

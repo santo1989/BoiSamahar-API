@@ -5,7 +5,7 @@
 
     <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Book </x-slot>
+            <x-slot name="pageHeader"> </x-slot>
             <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Book</a></li>
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
@@ -42,7 +42,7 @@
                                             <th>Category Name</th>
                                             <th>Book Author</th>
                                             <th>Book Details</th>
-                                            <th>Book Download Link</th>
+                                            <!-- <th>Book Download Link</th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -54,11 +54,11 @@
                                                 <td>{{ $book->category->name ?? ' ' }}</td>
                                                 <td>{{ $book->author->name ?? ' '}}</td>
                                                 <td>{{ $book->details }}</td>
-                                                <td>
+                                                <!-- <td>
                                                     <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
                                 <i class="fas fa-file-pdf"></i>
                             </a>
-                        </td>
+                        </td> -->
                                                 <td>
                                                    
                                                     <a class="btn btn-info my-1 mx-1 btn-sm"

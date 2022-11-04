@@ -34,7 +34,6 @@ class BookController extends Controller
         $request->validate([
             'name' => 'required|min:3|max:191',
             'download_link' => 'required',
-            'details' => 'required',
             'category_id' => 'required',
             'author_id' => 'required',
         ]);
@@ -44,7 +43,7 @@ class BookController extends Controller
             Book::create([
                 'name' => $request->name,
                 'details' => $request->details,
-                'download_link' => $this->uploadpdf(request()->file('download_link')),
+                'download_link' =>$request->download_link,
                 'category_id' => $request->category_id,
                 'category_name'=> $category_name[0]->name,
                 'author_id' => $request->author_id,
@@ -92,21 +91,22 @@ class BookController extends Controller
             $requestData = [
                 'name' => $request->name,
                 'details' => $request->details,
+                'download_link' =>$request->download_link,
                 'category_id' => $request->category_id,
                 'category_name' => $category_name[0]->name,
                 'author_id' => $request->author_id,
                 'author_name' => $author_name[0]->name,
             ];
 
-            if ($request->hasFile('download_link')) {
-                $download_link = $request->file('download_link');
-                $name
-                = $download_link->getClientOriginalName() . '-' . time() .
-                '.' . $download_link->getClientOriginalExtension();
-                $destinationPath = storage_path('/app/public/books/');
-                $download_link->move($destinationPath, $name);
-                $book->download_link = $name;
-            }
+            // if ($request->hasFile('download_link')) {
+            //     $download_link = $request->file('download_link');
+            //     $name
+            //     = $download_link->getClientOriginalName() . '-' . time() .
+            //     '.' . $download_link->getClientOriginalExtension();
+            //     $destinationPath = storage_path('/app/public/books/');
+            //     $download_link->move($destinationPath, $name);
+            //     $book->download_link = $name;
+            // }
 
             $book->update($requestData);
 

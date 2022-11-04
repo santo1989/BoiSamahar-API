@@ -31,27 +31,14 @@ Route::post('/auth/login', [AuthController::class, 'loginUser']);
 
 Route::apiResource('categories', CategoryController::class);
 
-Route::get('categories/search/{id}', function ($id) {
-    $books = Book::where('category_id', $id)->get();
-    
-    foreach ($books as $book) {
-        $book->download_link = url('storage/books/' . $book->download_link);
-    }
-    // $number_of_books=Category::find($id)->number_of_books = $books->count();
-    foreach ($books as $book) {
-        $book->author = Author::find($book->author_id);
+Route::get('getAuthordByCategoryId/{id}', function ($id) {
+    $authors = Author::where('category_id', $id)->get();
 
-        // $authors = Book::where('author_id', $id)->count();
-    }
-    // $number_of_books = Book::where('author_id', $id)->count();
         $response = [
             'success' => true,
-            'data'    => $books, 
-            // 'number_of_books' =>$authors,
+            'data'    => $authors, 
             'message' => ' search by categories of Books retrieved successfully.',
         ];
-
-
         return response()->json($response, 200);
 
     
@@ -61,11 +48,11 @@ Route::apiResource('books', BookController::class);
 
 Route::apiResource('authors', AuthorController::class);
 
-Route::get('books/search/author/{author_id}', function ($id) {
+Route::get('getBooksByAuthorId/{id}', function ($id) {
     $books = Book::where('author_id', $id)->get();
-    foreach ($books as $book) {
-        $book->download_link = url('storage/books/' . $book->download_link);
-    }
+    // foreach ($books as $book) {
+    //     $book->download_link = url('storage/books/' . $book->download_link);
+    // }
 
     $response = [
         'success' => true,

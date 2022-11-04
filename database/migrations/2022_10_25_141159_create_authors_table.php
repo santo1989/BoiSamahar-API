@@ -17,6 +17,7 @@ class CreateAuthorsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('number_of_book')->nullable();
+            $table->integer('category_id');
             $table->timestamps();
         });
     }
