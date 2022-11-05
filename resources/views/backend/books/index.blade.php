@@ -55,9 +55,13 @@
                                                 <td>{{ $book->author->name ?? ' '}}</td>
                                                 <td>{{ $book->details }}</td>
                                                 <td>
-                                                    <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
+                                                    <a href="{{ $book->download_link }}" target="_blank">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                        {{-- {{ $book->download_link }} --}}
+                                                    </a>
+                                                    {{-- <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
                                 <i class="fas fa-file-pdf"></i>
-                            </a>
+                            </a> --}}
                         </td>
                                                 <td>
                                                    
