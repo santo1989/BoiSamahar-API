@@ -60,7 +60,7 @@
             </div>
             <!-- <div class="form-group">
                 <label for="download_link">Book Download Link</label>
-                <input type="file" class="form-control" name="download_link" id="download_link"
+                <input type="text" class="form-control" name="download_link" id="download_link"
                     placeholder="Enter Book Download Link">
             </div> -->
 

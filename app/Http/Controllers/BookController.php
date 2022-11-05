@@ -43,7 +43,8 @@ class BookController extends Controller
             Book::create([
                 'name' => $request->name,
                 'details' => $request->details,
-                'download_link' =>$request->download_link,
+                // 'download_link' => $this->uploadpdf(request()->file('download_link')),
+                'download_link' => $request->download_link,
                 'category_id' => $request->category_id,
                 'category_name'=> $category_name[0]->name,
                 'author_id' => $request->author_id,
@@ -96,6 +97,7 @@ class BookController extends Controller
                 'category_name' => $category_name[0]->name,
                 'author_id' => $request->author_id,
                 'author_name' => $author_name[0]->name,
+                'download_link' => $request->download_link,
             ];
 
             // if ($request->hasFile('download_link')) {
@@ -120,10 +122,10 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
-        $unlink = storage_path('app/public/books/' . $book->download_link);
-        if (file_exists($unlink)) {
-            unlink($unlink);
-        }
+        // $unlink = storage_path('app/public/books/' . $book->download_link);
+        // if (file_exists($unlink)) {
+        //     unlink($unlink);
+        // }
         $book->delete();
 
         $book->category->decrement('number_of_book');
@@ -133,21 +135,25 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function uploadpdf($file)
-    {
-        $name
-        = $file->getClientOriginalName() . '-' . time() .
-        '.' . $file->getClientOriginalExtension();
-        $destinationPath = storage_path('/app/public/books/');
-        $file->move($destinationPath, $name);
-        return $name;
-    }
+    // public function uploadpdf($file)
+    // {
+    //     $name
+    //     = $file->getClientOriginalName() . '-' . time() .
+    //     '.' . $file->getClientOriginalExtension();
+    //     $destinationPath = storage_path('/app/public/books/');
+    //     $file->move($destinationPath, $name);
+    //     return $name;
+    // }
 
     public function getDownloadLink($books)
     {
         foreach ($books as $book) {
-            $book->download_link = url('storage/books/' . $book->download_link);
+            $book->download_link = url($book->download_link);
         }
         return $books;
+        // foreach ($books as $book) {
+        //     $book->download_link = url('storage/books/' . $book->download_link);
+        // }
+        // return $books;
     }
 }

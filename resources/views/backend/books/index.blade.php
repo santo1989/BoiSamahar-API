@@ -53,12 +53,16 @@
                                                 <td>{{ $book->name }}</td>
                                                 <td>{{ $book->category->name ?? ' ' }}</td>
                                                 <td>{{ $book->author->name ?? ' '}}</td>
-                                                <!-- <td>{{ $book->details }}</td> -->
-                                                <!-- <td>
-                                                    <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
+                                                <td>{{ $book->details }}</td>
+                                                <td>
+                                                    <a href="{{ $book->download_link }}" target="_blank">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                        {{-- {{ $book->download_link }} --}}
+                                                    </a>
+                                                    {{-- <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
                                 <i class="fas fa-file-pdf"></i>
-                            </a>
-                        </td> -->
+                            </a> --}}
+                        </td>
                                                 <td>
                                                    
                                                     <a class="btn btn-info my-1 mx-1 btn-sm"
