@@ -50,7 +50,7 @@ Route::get('/cleareverything', function () {
     echo "Config cleared<br>";
 });
 
-Route::get('/ key =', function () {
+Route::get('/key', function () {
     $key =  Artisan::call('key:generate');
     echo "key:generate<br>";
 });
