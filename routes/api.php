@@ -32,34 +32,50 @@ Route::post('/auth/login', [AuthController::class, 'loginUser']);
 Route::apiResource('categories', CategoryController::class);
 
 Route::get('categories/search/{id}', function ($id) {
-    $books = Book::where('category_id', $id)->get();
+     $books = Book::distinct()->select('books.author_id', 'author_name')
+        ->where('books.category_id', $id)
+        ->get();
 
-    // foreach ($books as $book) {
-    //     $book->download_link = url('storage/books/' . $book->download_link);
-    // }
-    foreach ($books as $book) {
-        $book->download_link = url($book->download_link);
-    }
-    // $number_of_books=Category::find($id)->number_of_books = $books->count();
-    foreach ($books as $book) {
-        $book->author = Author::find($book->author_id);
-
-        // $authors = Book::where('author_id', $id)->count();
-    }
-    // $number_of_books = Book::where('author_id', $id)->count();
-        $response = [
-            'success' => true,
-            'data'    => $books, 
-            // 'number_of_books' =>$authors,
-            'message' => ' search by categories of Books retrieved successfully.',
-        ];
+    // select distinct author_id, author_name from books where category_id=1;
+    // select count(id) from books where category_id=1 and author_id=1;
+    //select name,download_link from books where category_id=1 and author_id=1;
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' search by categories of Books retrieved successfully.',
+    ];
 
 
-        return response()->json($response, 200);
-
-    
+    return response()->json($response, 200);
 });
 
+Route::get('categories/search/author_number_of_book/{category_id}/{author_id}', function ($category_id,$author_id) {
+    $books = Book::where('books.category_id', $category_id)
+        ->where('books.author_id', $author_id)
+        ->count();
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' author_number_of_book retrieved successfully.',
+    ];
+
+
+    return response()->json($response, 200);
+});
+
+
+Route::get('categories/search/author_books/{category_id}/{author_id}', function ($category_id,$author_id) {
+    $books = Book::where('books.category_id', $category_id)
+        ->where('books.author_id', $author_id)
+        ->get();
+    $response = [
+        'success' => true,
+        'data'    => $books,
+        'message' => ' author_books retrieved successfully.',
+    ];
+
+    return response()->json($response, 200);
+});
 Route::apiResource('books', BookController::class);
 
 Route::apiResource('authors', AuthorController::class);
@@ -82,10 +98,10 @@ Route::get('books/search/author/{author_id}', function ($id) {
 });
 
 
-Route::get('books/search/category/author_name/{category_id}', function ($id) {
+Route::get('books/search/category/category_id/{category_id}', function ($id) {
     // $books = Book::where('category_id', $id)->author_name;
-    $books = Book::where('category_id', $id)->get()->groupBy('author_name');
-  
+    // $books = Book::where('category_id', $id)->get()->groupBy('author_name');
+    $books = Book::where('category_id', $id)->orderBy('author_name')->get();
 
     $response = [
         'success' => true,
@@ -110,7 +126,7 @@ Route::get('books/search/book_name/{name}', function ($name) {
     ];
 
     return response()->json($response, 200);
-}); 
+});
 
 Route::get('books/search/author_name/{author_name}', function ($author_name) {
     $books = Book::where('author_name', $author_name)->get();
@@ -144,7 +160,7 @@ Route::get('books/search/category_name/{category_name}', function ($category_nam
     return response()->json($response, 200);
 });
 
-Route::get('auther_book_search_by_category_name/{category_id}/{author_id}', function ($category_name,$author_id) {
+Route::get('auther_book_search_by_category_name/{category_id}/{author_id}', function ($category_name, $author_id) {
     $books = Book::where('category_id', $category_name)->where('author_id', $author_id)->get();
     foreach ($books as $book) {
         $book->download_link = url($book->download_link);
