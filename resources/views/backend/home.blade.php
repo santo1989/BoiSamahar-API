@@ -1,109 +1,165 @@
       <x-backend.layouts.master>
 
-            <x-slot name="pageTitle">
-                
-            </x-slot>
+          <x-slot name="pageTitle">
 
-            <x-slot name='breadCrumb'>
-                <x-backend.layouts.elements.breadcrumb>
-                    <x-slot name="pageHeader">  </x-slot>
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </x-backend.layouts.elements.breadcrumb>
-            </x-slot>
-    <section class="content">
-        <div class="container-fluid">
-            @if (is_null($books) || empty($books))
-                <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
-                        <h1 class="text-danger"> <strong>Currently No Information Available!</strong> </h1>
-                    </div>
-                </div>
-            @else
-                @if (session('message'))
-                    <div class="alert alert-success">
-                        <span class="close" data-dismiss="alert">&times;</span>
-                        <strong>{{ session('message') }}.</strong>
-                    </div>
-                @endif
+          </x-slot>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card ">
-                            {{-- <div class="card-header">
-                                <a class="btn btn-primary" href={{ route('books.create') }}>Create</a>
-                            </div> --}}
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table id="datatablesSimple" class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>SL</th>
-                                            <th>Book Name</th>
-                                            <th>Category Name</th>
-                                            <th>Book Author</th>
-                                            <th>Book Details</th>
-                                            <th>Book Download Link</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($books as $book)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $book->name }}</td>
-                                                <td>{{ $book->category->name ?? ' ' }}</td>
-                                                <td>{{ $book->author->name ?? ' '}}</td>
-                                                <td>{{ $book->details }}</td>
-                                                <td>
-                                                    <a href="{{ asset('storage/books/'.$book->download_link) }}" target="_blank">
-                                <i class="fas fa-file-pdf"></i>
-                            </a>
-                        </td>
-                                                <td>
-                                                   
-                                                    <a class="btn btn-info my-1 mx-1 btn-sm"
-                                                        href="{{ route('books.edit', $book->id) }}">Edit</a>
-                                                        <a class="btn btn-primary my-1 mx-1 btn-sm"
-                                                        href={{ route('books.show', ['book' => $book->id]) }}>Show</a>
-                                                    <form action="{{ route('books.destroy', $book->id) }}" method="POST">
-                                                       @csrf
-                                @method('delete')
+          <x-slot name='breadCrumb'>
+              {{-- <x-backend.layouts.elements.breadcrumb>
+                  <x-slot name="pageHeader"> Dashboard </x-slot>
+                  <li class="breadcrumb-item active">Dashboard</li>
+              </x-backend.layouts.elements.breadcrumb> --}}
+          </x-slot>
+          <section class="content">
+              <div class="container-fluid">
+                  @if (is_null($books) || empty($books))
+                      <div class="row">
+                          <div class="col-md-12 col-lg-12 col-sm-12">
+                              <h1 class="text-danger"> <strong>Currently No Information Available!</strong> </h1>
+                          </div>
+                      </div>
+                  @else
+                      @if (session('message'))
+                          <div class="alert alert-success">
+                              <span class="close" data-dismiss="alert">&times;</span>
+                              <strong>{{ session('message') }}.</strong>
+                          </div>
+                      @endif
 
-                                <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-danger my-1 mx-1 btn-sm" type="submit">Delete</button>
-                            </form>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="7" class="text-center text-danger">
-                                                    <strong>Currently No Information Available!</strong>
-                                                </td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                      <div class="row pt-5">
+                          <div class="col-md-3 col-lg-3 col-sm-12">
+                              @php
+                                  $categories = App\Models\Category::all();
+                              @endphp
+
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="{{ route('categories.index') }}" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Category</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-indent "
+                                              aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $categories->count() }} Category </p>
+                                    </a>
+                                  </div>
+                              </div>
                             </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
+                              <!-- /.card -->
+                              <div class="col-md-3 col-lg-3 col-sm-12">
+                                @php
+                                  $authors = App\Models\Author::all();
+                              @endphp
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="{{ route('authors.index') }}" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Author</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-user" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $authors->count() }} Author </p>
+                                    </a>
+                                  </div>
+                              </div>
+                            </div>
 
+                              <!-- /.card -->
+                              <div class="col-md-3 col-lg-3 col-sm-12">
+                                @php
+                                  $books = App\Models\Book::all();
+                                @endphp
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="{{ route('books.index') }}" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Book</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-book" aria-hidden="true"></i></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $books->count() }} Book </p>
+                                    </a>
+                                  </div>
+                              </div>
+                            </div>
+                              <!-- /.card -->
+                              <div class="col-md-3 col-lg-3 col-sm-12">
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Notification</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-bell" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total 10 Notification </p>
+                                    </a>
+                                  </div>
+                              </div>
+                              <!-- /.card -->
+                          </div>
+                          <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
 
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </section>
-    @endif
-        </x-backend.layouts.master>
+                       <div class="row pt-2">
+                          <div class="col-md-3 col-lg-3 col-sm-12">
+                              @php
+                                  $users = App\Models\User::all();
+                              @endphp
 
-<script>
-    // $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Registered Users</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-user-circle" aria-hidden="true"></i></i></div>
+                                      <p class="card-text d-flex justify-content-center">Total {{ $users->count() }} Users </p>
+                                    </a>
+                                  </div>
+                              </div>
+                            </div>
+                              <!-- /.card -->
+                              <div class="col-md-3 col-lg-3 col-sm-12">
+                               
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Manage Ads</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-university" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">App Monitaization </p>
+                                    </a>
+                                  </div>
+                              </div>
+                            </div>
 
-    $('#reservation').daterangepicker()
+                              <!-- /.card -->
+                              <div class="col-md-3 col-lg-3 col-sm-12">
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Comments</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-comments" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Users Comments </p>
+                                    </a>
+                                  </div>
+                              </div>
+                            </div>
+                              <!-- /.card -->
+                              <div class="col-md-3 col-lg-3 col-sm-12">
+                              <div class="card" style="background-color: #2196F3">
+                                  <div class="card-body">
+                                    <a href="#" style="color: white; text-decoration: none;">
+                                      <h5 class="card-title d-flex justify-content-center">Settings</h5>
+                                      <div class="d-flex justify-content-center"> <i class="fa fa-cog" aria-hidden="true"></i></div>
+                                      <p class="card-text d-flex justify-content-center">Key and Privacy Settings </p>
+                                    </a>
+                                  </div>
+                              </div>
+                              <!-- /.card -->
+                          </div>
+                          <!-- /.col -->
+                      </div>
 
-    //   Date picker JS
-</script>
-{{-- @endif --}}
+              </div>
+              <!-- /.container-fluid -->
+          </section>
+          @endif
+      </x-backend.layouts.master>
+
+      <script>
+          // $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
+          $('#reservation').daterangepicker()
+
+          //   Date picker JS
+      </script>
+      {{-- @endif --}}

@@ -5,7 +5,7 @@
 
     <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Author </x-slot>
+            <x-slot name="pageHeader">  </x-slot>
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="{{ route('authors.index') }}">Author</a></li>
             <li class="breadcrumb-item active">Edit Author Information</li>
@@ -27,6 +27,13 @@
             @csrf
             @method('put')
             <x-backend.form.input name="name" type="text" label="Name" :value="$author->name" />
+            <select class="form-control" name="category_id" id="category_name">
+                   
+                   <option value="">Select Category</option>
+                   @foreach($categories as $categorie)
+                       <option value="{{ $categorie->id }}">{{ $categorie->name }}</option>
+                   @endforeach
+               </select>
             <br>
 
             <x-backend.form.button>Save</x-backend.form.button>

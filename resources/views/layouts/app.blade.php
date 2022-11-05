@@ -19,11 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<body style="background-color: #2196F3">
+    <div id="app" >
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm" >
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'BoiSamahar') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -41,8 +41,8 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li class="nav-item ">
+                                    <!-- <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a> -->
                                 </li>
                             @endif
 

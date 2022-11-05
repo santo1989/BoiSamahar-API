@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class
         ]);
+
+        // \App\Models\Author::factory(10)->create();
+        // \App\Models\Category::factory(10)->create();
+        \App\Models\Book::factory(50)->create();
     }
     
 }

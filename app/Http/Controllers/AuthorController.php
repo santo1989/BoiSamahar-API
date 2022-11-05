@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 class AuthorController extends Controller
 {
    
@@ -18,8 +18,8 @@ class AuthorController extends Controller
    
     public function create()
     {
-
-        return view('backend.authors.create');
+        $categories = Category::all();
+        return view('backend.authors.create',compact('categories'));
     }
 
    
@@ -27,13 +27,16 @@ class AuthorController extends Controller
     {
         $request->validate([
             'name' => 'required|min:3|max:191',
+            'category_id' =>'required'
         ]);
 
+        $category_name = Category::where('id', $request->category_id)->get();
         $authors = Author::all();
         $book = Book::all();
         // Data insert
         $author = new Author;
         $author->name = $request->name;
+        $author->category_id = $request->category_id;
         if($book == null || $book->count() ==0 || isset($authors->books) == null){
             $author->number_of_book = 0;
         } else {
@@ -54,7 +57,8 @@ class AuthorController extends Controller
   
     public function edit(Author $author)
     {
-        return view('backend.authors.edit', compact('author'));
+        $categories = Category::all();
+        return view('backend.authors.edit', compact('author','categories'));
     }
 
  
@@ -68,6 +72,7 @@ class AuthorController extends Controller
         $book = Book::all();
         // Data insert
         $author->name = $request->name;
+        $author->category_id = $request->category_id;
         if($book == null || $book->count() ==0 || isset($authors->books) == null){
             $author->number_of_book = 0;
         } else {
