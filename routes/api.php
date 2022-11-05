@@ -21,7 +21,7 @@ Route::post('/auth/login', [AuthController::class, 'loginUser']);
 Route::apiResource('categories', CategoryController::class);
 
 Route::get('getAuthordByCategoryId/{id}', function ($id) {
-    $books = Author::where('category_id', $id)->get();
+    $books = Author::where('category_id', $id)->get()->all();
 
         $response = [
             'success' => true,
@@ -34,7 +34,7 @@ Route::get('getAuthordByCategoryId/{id}', function ($id) {
 
 
 Route::get('getBooksByAuthorId/{id}', function ($id) {
-    $books = Book::where('author_id', $id)->get();
+    $books = Book::where('author_id', $id)->get()->all();
 
     $response = [
         'success' => true,
